@@ -47,9 +47,11 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
 .spark{position:absolute;font-size:24px;animation:sparkle 1.6s ease-in-out infinite}
 .spark.s1{left:2%;top:40%}.spark.s2{right:0;top:48%;animation-delay:.5s}.spark.s3{left:45%;top:0;animation-delay:.8s}
 @keyframes sparkle{50%{opacity:.35;transform:scale(.65) rotate(30deg)}}
-#videoOverlay{position:absolute;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:18px;background:#4021368c;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#videoOverlay{position:absolute;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:18px;overflow:hidden;background:#40213655}
 #videoOverlay.show{display:flex;animation:pageIn .35s ease both}
-.videoBox{position:relative;width:min(100%,520px);border:2px solid #fff;border-radius:24px;padding:10px;background:#fff0f7;box-shadow:0 25px 80px #39132d66}
+#videoBackdrop{position:absolute;inset:-3%;width:106%;height:106%;object-fit:cover;filter:blur(22px) brightness(.58) saturate(1.15);transform:scale(1.04);z-index:-2;pointer-events:none}
+#videoOverlay:after{content:"";position:absolute;inset:0;background:linear-gradient(145deg,#35152c55,#160d1b77);z-index:-1;pointer-events:none}
+.videoBox{position:relative;width:min(100%,520px);border:2px solid #fff;border-radius:24px;padding:10px;background:#fff0f7;box-shadow:0 25px 80px #39132d66;z-index:1}
 .videoCaption{padding:9px 34px 14px;text-align:center;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(20px,5.5vw,28px);font-weight:600;letter-spacing:.4px;color:#a34270;text-shadow:0 2px 12px #f5a9c8aa;animation:captionFade 1.4s ease both}
 .videoCaption span{display:inline-block;color:#d58bb1;font-size:.8em;margin-left:5px;animation:captionTwinkle 2.2s ease-in-out infinite}
 @keyframes captionFade{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
@@ -112,13 +114,16 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
       <div class="big-emoji" style="font-size:42px;margin-bottom:0">💌</div>
       <div class="letter-heading">A little message for Kimmy</div>
       <p style="margin:3px 0 12px;font-size:13px">read it slowly, okay? ♡</p>
-      <div id="letterScroll">Hi kimmyy how are you, this is the only thing i could make of and yeahh i hope you like it at the meantime I'm sorry for all the things i have done like sending you inappropriating things and the streak too and the time when i confess i know it almost break our friendship but I can't bring back the energy of our friendship at the past because it was so difficult for me yk why naman although I'm trying but i observed something on you about me and I can't tell you what is it so basta and I'm sorry too kasi tayung dalawa yung unang nagka kilala pero parang na stop ako ng pag communicate sayu because kay yk i don't like to mention her anymore Basta, so ayun I'm sorry for that and i hope that in the future makakamit mo mga dreams mo and ma kasama muna yung boy na you ever wanted in life so i think ito lang ata ma sasabi ko kasi basta and maybe this is the last i think? Idk, i don't know the future and the present but yahh this world is so diverse the world is big but even the universe always against on me. Forgive me of my grammar it's so unprofessional even the message is short i can't put any more words on it kasi ehh idk maybe nakaka hiya na kaya ganito na ako no apaka random tas bastos at the same time tas your just younger than me too tas ginagayan lang kita no? apaka sama ko talaga and baka nga disappointed kana kay kuya cy² mo kasi ganito siya sayu hayyyyssss😔 i hope nalang na maka kita ka ng better or parang naka kita kana ata and siya yun diba i hope she will respect you and don't treat the way i treated you and at the same time enjoy your life wag mag matulog ng late and kain sa tamang uras and thank you for everything that you make me experience this i really appreciate it and im grateful for you, labb yahh always^^</div>
+      <div id="letterScroll">Hi kimmyy how are you, this is the only thing i could make of and yeahh i hope you like it at the meantime I'm sorry for all the things i have done like sending you inappropriating things and the streak too and the time when i confess i know it almost break our friendship but I can't bring back the energy of our friendship at the past because it was so difficult for me yk why naman although I'm trying but i observed something on you about me and I can't tell you what is it so basta and I'm sorry too kasi tayung dalawa yung unang nagka kilala pero parang na stop ako ng pag communicate sayu because kay yk i don't like to mention her anymore Basta, so ayun I'm sorry for that and i hope that in the future makakamit mo mga dreams mo and ma kasama muna yung boy na you ever wanted in life so i think ito lang ata ma sasabi ko kasi basta and maybe this is the last i think? Idk, i don't know the future and the present to enjoy your life wag mag matulog ng late and kain sa tamang uras and thank you for everything that you make me experience this i really appreciate it and im grateful for you, labb yahh always^^</div>
       <button class="btn" id="lastBtn">Last ♡</button>
       <div class="small">with love, always 🌷</div>
     </div>
   </section>
 
   <div id="videoOverlay" role="dialog" aria-modal="true" aria-label="One last surprise">
+    <video id="videoBackdrop" muted playsinline loop preload="auto" aria-hidden="true">
+      <source src="video1.mp4" type="video/mp4">
+    </video>
     <div class="videoBox">
       <div class="videoCaption">Maybe in another universe <span>✦</span></div>
       <button class="closeVideo" id="closeVideo" aria-label="Close video">×</button>
@@ -138,6 +143,7 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
   const music = document.getElementById('bgMusic');
   music.loop = true; // Keep the song looping until the Last button is pressed.
   const video = document.getElementById('finalVideo');
+  const videoBackdrop = document.getElementById('videoBackdrop');
   const overlay = document.getElementById('videoOverlay');
   let autoScrollTimer = null;
   let messageReady = false;
@@ -222,17 +228,22 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
     music.pause();
     music.currentTime = 0;
     overlay.classList.add('show');
+    // Play a muted copy of the same video as a blurred, full-screen background.
+    videoBackdrop.currentTime = 0;
+    videoBackdrop.play().catch(() => {});
     // Playback may still depend on browser/device policy and whether the file is cached.
     video.currentTime = 0;
     video.play().catch(() => notify('Tap play on the video if it does not start automatically 💗'));
   });
   document.getElementById('closeVideo').addEventListener('click', () => {
     video.pause();
+    videoBackdrop.pause();
     overlay.classList.remove('show');
   });
   overlay.addEventListener('click', e => {
     if (e.target === overlay) {
       video.pause();
+      videoBackdrop.pause();
       overlay.classList.remove('show');
     }
   });

@@ -194,7 +194,7 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
     setTimeout(() => {
       letter.scrollTop = 0;
       clearInterval(autoScrollTimer);
-      // Slow, comfortable reading speed: roughly 11px per second.
+      // Slow, comfortable reading speed: roughly 5px per second.
       autoScrollTimer = setInterval(() => {
         if (!document.getElementById('page5').classList.contains('active')) {
           clearInterval(autoScrollTimer); return;

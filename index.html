@@ -190,7 +190,7 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
     setTimeout(() => {
       music.currentTime = 0;
       music.play().catch(() => notify('Tap anywhere once if your browser blocks music 💗'));
-    }, 2000);
+    }, 100);
     setTimeout(() => {
       letter.scrollTop = 0;
       clearInterval(autoScrollTimer);
@@ -207,7 +207,7 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
         } else {
           letter.scrollTop += 1;
         }
-      }, 55);
+      }, 170);
     }, 1000);
   });
 

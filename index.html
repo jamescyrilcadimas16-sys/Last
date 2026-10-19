@@ -50,6 +50,10 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
 #videoOverlay{position:absolute;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:18px;background:#4021368c;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 #videoOverlay.show{display:flex;animation:pageIn .35s ease both}
 .videoBox{position:relative;width:min(100%,520px);border:2px solid #fff;border-radius:24px;padding:10px;background:#fff0f7;box-shadow:0 25px 80px #39132d66}
+.videoCaption{padding:9px 34px 14px;text-align:center;font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:clamp(20px,5.5vw,28px);font-weight:600;letter-spacing:.4px;color:#a34270;text-shadow:0 2px 12px #f5a9c8aa;animation:captionFade 1.4s ease both}
+.videoCaption span{display:inline-block;color:#d58bb1;font-size:.8em;margin-left:5px;animation:captionTwinkle 2.2s ease-in-out infinite}
+@keyframes captionFade{from{opacity:0;transform:translateY(8px);filter:blur(4px)}to{opacity:1;transform:translateY(0);filter:blur(0)}}
+@keyframes captionTwinkle{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.15)}}
 .videoBox video{display:block;width:100%;max-height:75dvh;border-radius:16px;background:#1a0e16;object-fit:contain}
 .closeVideo{position:absolute;top:-14px;right:-8px;width:40px;height:40px;border-radius:50%;background:#fff;color:#a33e6d;font-size:24px;box-shadow:0 5px 16px #0002;z-index:2}
 #toast{position:absolute;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:#7d3b5b;color:white;padding:10px 16px;border-radius:999px;font-size:13px;display:none;max-width:90%;text-align:center}
@@ -108,7 +112,7 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
       <div class="big-emoji" style="font-size:42px;margin-bottom:0">💌</div>
       <div class="letter-heading">A little message for Kimmy</div>
       <p style="margin:3px 0 12px;font-size:13px">read it slowly, okay? ♡</p>
-      <div id="letterScroll">Hi kimmyy how are you, this is the only thing i could make of and yeahh i hope you like it at the meantime I'm sorry for all the things i have done like sending you inappropriating things and the streak too and the time when i confess i know it almost break our friendship but I can't bring back the energy of our friendship at the past because it was so difficult for me yk why naman although I'm trying but i observed something on you about me and I can't tell you what is it so basta and I'm sorry too kasi tayung dalawa yung unang nagka kilala pero parang na stop ako ng pag communicate sayu because kay yk i don't like to mention her anymore Basta, so ayun I'm sorry for that and i hope that in the future makakamit mo mga dreams mo and ma kasama muna yung boy na you ever wanted in life so i think ito lang ata ma sasabi ko kasi basta and maybe this is the last i think? Idk, i don't know the future and the present to enjoy your life wag mag matulog ng late and kain sa tamang uras and thank you for everything that you make me experience this i really appreciate it and im grateful for you, labb yahh always^^</div>
+      <div id="letterScroll">Hi kimmyy how are you, this is the only thing i could make of and yeahh i hope you like it at the meantime I'm sorry for all the things i have done like sending you inappropriating things and the streak too and the time when i confess i know it almost break our friendship but I can't bring back the energy of our friendship at the past because it was so difficult for me yk why naman although I'm trying but i observed something on you about me and I can't tell you what is it so basta and I'm sorry too kasi tayung dalawa yung unang nagka kilala pero parang na stop ako ng pag communicate sayu because kay yk i don't like to mention her anymore Basta, so ayun I'm sorry for that and i hope that in the future makakamit mo mga dreams mo and ma kasama muna yung boy na you ever wanted in life so i think ito lang ata ma sasabi ko kasi basta and maybe this is the last i think? Idk, i don't know the future and the present but yahh this world is so diverse the world is big but even the universe always against on me. Forgive me of my grammar it's so unprofessional even the message is short i can't put any more words on it kasi ehh idk maybe nakaka hiya na kaya ganito na ako no apaka random tas bastos at the same time tas your just younger than me too tas ginagayan lang kita no? apaka sama ko talaga and baka nga disappointed kana kay kuya cy² mo kasi ganito siya sayu hayyyyssss😔 i hope nalang na maka kita ka ng better or parang naka kita kana ata and siya yun diba i hope she will respect you and don't treat the way i treated you and at the same time enjoy your life wag mag matulog ng late and kain sa tamang uras and thank you for everything that you make me experience this i really appreciate it and im grateful for you, labb yahh always^^</div>
       <button class="btn" id="lastBtn">Last ♡</button>
       <div class="small">with love, always 🌷</div>
     </div>
@@ -116,6 +120,7 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
 
   <div id="videoOverlay" role="dialog" aria-modal="true" aria-label="One last surprise">
     <div class="videoBox">
+      <div class="videoCaption">Maybe in another universe <span>✦</span></div>
       <button class="closeVideo" id="closeVideo" aria-label="Close video">×</button>
       <video id="finalVideo" controls playsinline preload="auto">
         <source src="video1.mp4" type="video/mp4">
@@ -190,11 +195,12 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
     setTimeout(() => {
       music.currentTime = 0;
       music.play().catch(() => notify('Tap anywhere once if your browser blocks music 💗'));
-    }, 100);
+    }, 50);
+    // Wait 5 seconds before starting the letter's auto-scroll.
     setTimeout(() => {
       letter.scrollTop = 0;
       clearInterval(autoScrollTimer);
-      // Slow, comfortable reading speed: roughly 5px per second.
+      // Scroll 1 pixel every 160 milliseconds.
       autoScrollTimer = setInterval(() => {
         if (!document.getElementById('page5').classList.contains('active')) {
           clearInterval(autoScrollTimer); return;
@@ -207,8 +213,8 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
         } else {
           letter.scrollTop += 1;
         }
-      }, 170);
-    }, 1000);
+      }, 160);
+    }, 5000);
   });
 
   document.getElementById('lastBtn').addEventListener('click', () => {
@@ -241,5 +247,4 @@ input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
 })();
 </script>
 </body>
-    </html>
-    
+</html>

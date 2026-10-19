@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#ffe6ef">
+<title>For Kimmy ♡</title>
+<style>
+:root{--pink:#ff6f9f;--rose:#d94f83;--cream:#fff8f4;--ink:#713d5a}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;overscroll-behavior:none;touch-action:pan-y;background:#ffeaf1;font-family:ui-rounded,"Trebuchet MS",system-ui,sans-serif;color:var(--ink)}
+body{position:fixed;inset:0}
+button,input{font:inherit}
+button{border:0;cursor:pointer}
+#app{position:relative;width:100%;height:100dvh;overflow:hidden;isolation:isolate}
+.page{position:absolute;inset:0;display:none;align-items:center;justify-content:center;padding:22px 18px calc(22px + env(safe-area-inset-bottom));overflow:hidden;background:radial-gradient(circle at 15% 15%,#fff 0 3%,transparent 22%),radial-gradient(circle at 90% 80%,#ffd2e2 0 2%,transparent 25%),linear-gradient(145deg,#fff6f8,#ffe0ec 52%,#fff3e5)}
+.page.active{display:flex;animation:pageIn .65s ease both}
+@keyframes pageIn{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:scale(1)}}
+.decor{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.flower{position:absolute;font-size:clamp(24px,8vw,46px);opacity:.55;animation:float 5s ease-in-out infinite}
+.flower:nth-child(1){top:7%;left:7%}.flower:nth-child(2){top:12%;right:8%;animation-delay:-2s}.flower:nth-child(3){bottom:9%;left:9%;animation-delay:-1s}.flower:nth-child(4){bottom:12%;right:7%;animation-delay:-3s}.flower:nth-child(5){top:48%;left:2%;font-size:25px}.flower:nth-child(6){top:42%;right:3%;font-size:24px}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-8deg)}50%{transform:translateY(-12px) rotate(8deg)}}
+.card{width:min(100%,440px);max-height:88%;position:relative;text-align:center;padding:clamp(24px,7vw,36px) 22px;border:1.5px solid #fff;background:rgba(255,255,255,.76);border-radius:30px;box-shadow:0 18px 55px #d55e8b26,inset 0 0 0 1px #ffc8dc;backdrop-filter:blur(10px);overflow:hidden}
+.card:before{content:"";position:absolute;inset:8px;border:1px dashed #f6a8c6;border-radius:23px;pointer-events:none}
+.big-emoji{font-size:clamp(42px,13vw,66px);margin-bottom:10px;filter:drop-shadow(0 5px 7px #e989ad33);animation:bob 2.4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-7px) rotate(4deg)}}
+h1{font-size:clamp(23px,6.5vw,31px);line-height:1.28;margin:0 0 18px;color:#a33e6d}
+p{font-size:clamp(15px,4.1vw,18px);line-height:1.6;margin:10px 0 18px}
+input{width:100%;padding:15px 14px;border:1.5px solid #f2a3c1;border-radius:16px;background:#fffafd;outline:none;text-align:center;color:#773b59;box-shadow:0 4px 12px #d94f8310}
+input:focus{border-color:#dc5b91;box-shadow:0 0 0 4px #ffb7d133}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:13px 25px;border-radius:999px;background:linear-gradient(135deg,#ff8db4,#e65b94);color:white;font-weight:800;letter-spacing:.3px;box-shadow:0 8px 18px #d94f8338;transition:transform .2s,filter .2s}
+.btn:active{transform:scale(.96)}.btn.secondary{background:linear-gradient(135deg,#b8a2ff,#e17fba)}
+.small{font-size:13px;color:#a76b88;margin-top:13px}
+.wrong{animation:shake .42s ease}
+@keyframes shake{25%,75%{transform:translateX(-7px)}50%{transform:translateX(7px)}}
+.letter-card{width:min(100%,460px);max-height:88%;padding:25px 22px}
+.letter-heading{font-family:Georgia,serif;font-size:clamp(23px,6vw,30px);color:#b64f7d;margin:2px 0 10px}
+#letterScroll{height:min(48dvh,440px);overflow-y:auto;overscroll-behavior:contain;scrollbar-width:none;text-align:left;padding:12px 12px 18px;background:#fff8fbcc;border:1px solid #ffd0e1;border-radius:18px;line-height:1.8;font-size:15px;white-space:pre-wrap;touch-action:pan-y}
+#letterScroll::-webkit-scrollbar{display:none}
+#lastBtn{display:none;margin-top:14px}
+#cuteScene{position:relative;width:min(76vw,290px);height:245px;margin:0 auto 10px}
+.heart{position:absolute;font-size:clamp(24px,7vw,38px);animation:heartPop 1.3s ease-in-out infinite}
+.heart.h1{top:4%;left:13%}.heart.h2{top:12%;right:12%;animation-delay:.3s}.heart.h3{bottom:8%;left:15%;animation-delay:.6s}
+@keyframes heartPop{50%{transform:scale(1.25) rotate(10deg)}}
+.teddy{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);font-size:clamp(100px,34vw,145px);animation:teddyIn 1.3s cubic-bezier(.2,1.5,.4,1) both;filter:drop-shadow(0 12px 12px #d45d8830)}
+@keyframes teddyIn{from{opacity:0;transform:translate(-50%,30%) scale(.3) rotate(-20deg)}to{opacity:1;transform:translate(-50%,-50%) scale(1) rotate(0)}}
+.spark{position:absolute;font-size:24px;animation:sparkle 1.6s ease-in-out infinite}
+.spark.s1{left:2%;top:40%}.spark.s2{right:0;top:48%;animation-delay:.5s}.spark.s3{left:45%;top:0;animation-delay:.8s}
+@keyframes sparkle{50%{opacity:.35;transform:scale(.65) rotate(30deg)}}
+#videoOverlay{position:absolute;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:18px;background:#4021368c;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+#videoOverlay.show{display:flex;animation:pageIn .35s ease both}
+.videoBox{position:relative;width:min(100%,520px);border:2px solid #fff;border-radius:24px;padding:10px;background:#fff0f7;box-shadow:0 25px 80px #39132d66}
+.videoBox video{display:block;width:100%;max-height:75dvh;border-radius:16px;background:#1a0e16;object-fit:contain}
+.closeVideo{position:absolute;top:-14px;right:-8px;width:40px;height:40px;border-radius:50%;background:#fff;color:#a33e6d;font-size:24px;box-shadow:0 5px 16px #0002;z-index:2}
+#toast{position:absolute;left:50%;bottom:calc(20px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:30;background:#7d3b5b;color:white;padding:10px 16px;border-radius:999px;font-size:13px;display:none;max-width:90%;text-align:center}
+@media(max-height:650px){.card{padding:20px 18px}.big-emoji{font-size:42px}#cuteScene{height:190px}.teddy{font-size:105px}#letterScroll{height:42dvh}}
+</style>
+</head>
+<body>
+<div id="app">
+  <section class="page active" id="page1">
+    <div class="decor"><span class="flower">🌸</span><span class="flower">🌷</span><span class="flower">🌼</span><span class="flower">🌺</span><span class="flower">♡</span><span class="flower">✿</span></div>
+    <div class="card" id="questionCard">
+      <div class="big-emoji" id="questionEmoji">😊🌷</div>
+      <h1 id="questionTitle">Is this really you kimmy? 🤨</h1>
+      <p id="questionText">And if this is you, answer this: What exact date did we meet each other online?<br><strong>Month/Day/Year</strong></p>
+      <form id="answerForm">
+        <input id="answerInput" type="date" aria-label="Choose the date we met online" required>
+        <button class="btn" type="submit">Enter ♡</button>
+      </form>
+      <div class="small">A tiny question before your surprise ✨</div>
+    </div>
+  </section>
+
+  <section class="page" id="page2">
+    <div class="decor"><span class="flower">🌸</span><span class="flower">🦋</span><span class="flower">🌷</span><span class="flower">💗</span><span class="flower">✿</span><span class="flower">✨</span></div>
+    <div class="card">
+      <div class="big-emoji">🥹💐</div>
+      <h1>Oww soo you knoww woahhh 🤭</h1>
+      <p>I'm proud of yahh :P</p>
+      <div style="font-size:30px;margin-top:10px">♡ ✧･ﾟ: *✧･ﾟ:* ♡</div>
+    </div>
+  </section>
+
+  <section class="page" id="page3">
+    <div class="decor"><span class="flower">🌹</span><span class="flower">🤍</span><span class="flower">🌼</span><span class="flower">🦋</span><span class="flower">✨</span><span class="flower">🌸</span></div>
+    <div class="card">
+      <div class="big-emoji">🎀🎧</div>
+      <h1>This is not much but I hope you like it though</h1>
+      <p>Use headphones or earbuds first 🙂‍↕️🙂‍↔️</p>
+      <button class="btn" id="viewBtn">View ♡</button>
+    </div>
+  </section>
+
+  <section class="page" id="page4">
+    <div class="decor"><span class="flower">💗</span><span class="flower">🌷</span><span class="flower">🌸</span><span class="flower">🫧</span><span class="flower">🤍</span><span class="flower">✨</span></div>
+    <div class="card">
+      <div class="big-emoji">🎧🧸</div>
+      <h1>Naa nay earbuds?</h1>
+      <p>Ready na ba? Make yourself comfy first. 🌷</p>
+      <button class="btn" id="yesBtn">Oo 💗</button>
+    </div>
+  </section>
+
+  <section class="page" id="page5">
+    <div class="decor"><span class="flower">🌸</span><span class="flower">💞</span><span class="flower">🌷</span><span class="flower">🦋</span><span class="flower">✨</span><span class="flower">🌺</span></div>
+    <div class="card letter-card">
+      <div class="big-emoji" style="font-size:42px;margin-bottom:0">💌</div>
+      <div class="letter-heading">A little message for Kimmy</div>
+      <p style="margin:3px 0 12px;font-size:13px">read it slowly, okay? ♡</p>
+      <div id="letterScroll">Hi kimmyy how are you, this is the only thing i could make of and yeahh i hope you like it at the meantime I'm sorry for all the things i have done like sending you inappropriating things and the streak too and the time when i confess i know it almost break our friendship but I can't bring back the energy of our friendship at the past because it was so difficult for me yk why naman although I'm trying but i observed something on you about me and I can't tell you what is it so basta and I'm sorry too kasi tayung dalawa yung unang nagka kilala pero parang na stop ako ng pag communicate sayu because kay yk i don't like to mention her anymore Basta, so ayun I'm sorry for that and i hope that in the future makakamit mo mga dreams mo and ma kasama muna yung boy na you ever wanted in life so i think ito lang ata ma sasabi ko kasi basta and maybe this is the last i think? Idk, i don't know the future and the present to enjoy your life wag mag matulog ng late and kain sa tamang uras and thank you for everything that you make me experience this i really appreciate it and im grateful for you, labb yahh always^^</div>
+      <button class="btn" id="lastBtn">Last ♡</button>
+      <div class="small">with love, always 🌷</div>
+    </div>
+  </section>
+
+  <div id="videoOverlay" role="dialog" aria-modal="true" aria-label="One last surprise">
+    <div class="videoBox">
+      <button class="closeVideo" id="closeVideo" aria-label="Close video">×</button>
+      <video id="finalVideo" controls playsinline preload="auto">
+        <source src="video1.mp4" type="video/mp4">
+        Your browser does not support this video.
+      </video>
+    </div>
+  </div>
+  <div id="toast"></div>
+</div>
+<audio id="bgMusic" src="music1.mp3" preload="auto" loop></audio>
+<script>
+(() => {
+  const pages = [...document.querySelectorAll('.page')];
+  const toast = document.getElementById('toast');
+  const music = document.getElementById('bgMusic');
+  music.loop = true; // Keep the song looping until the Last button is pressed.
+  const video = document.getElementById('finalVideo');
+  const overlay = document.getElementById('videoOverlay');
+  let autoScrollTimer = null;
+  let messageReady = false;
+
+  function showPage(id) {
+    pages.forEach(p => p.classList.toggle('active', p.id === id));
+  }
+  function notify(text) {
+    toast.textContent = text;
+    toast.style.display = 'block';
+    clearTimeout(notify.timer);
+    notify.timer = setTimeout(() => toast.style.display = 'none', 2400);
+  }
+  document.getElementById('answerForm').addEventListener('submit', e => {
+    e.preventDefault();
+    // Native date input returns YYYY-MM-DD; compare the selected calendar date directly. 
+    const answer = document.getElementById('answerInput').value;
+    const card = document.getElementById('questionCard');
+    const correct = answer === '2025-08-18';
+    if (!correct) {
+      document.getElementById('questionEmoji').textContent = '😵‍💫💔';
+      document.getElementById('questionTitle').textContent = 'Wrong 😭';
+      document.getElementById('questionText').textContent = 'Hmmmm, that is not the right date. Try again if you want to! 🌧️';
+      document.getElementById('answerForm').style.display = 'none';
+      document.querySelector('#questionCard .small').textContent = 'Maybe it is not you after all… 🥺';
+      card.classList.remove('wrong'); void card.offsetWidth; card.classList.add('wrong');
+      const retry = document.createElement('button');
+      retry.className = 'btn';
+      retry.textContent = 'Try again ♡';
+      retry.onclick = () => {
+        document.getElementById('questionEmoji').textContent = '😊🌷';
+        document.getElementById('questionTitle').textContent = 'Is this really you kimmy? 🤨';
+        document.getElementById('questionText').innerHTML = 'And if this is you, answer this: What exact date did we meet each other online?<br><strong>Month/Day/Year</strong>';
+        document.getElementById('answerForm').style.display = '';
+        document.getElementById('answerInput').value = '';
+        document.querySelector('#questionCard .small').textContent = 'A tiny question before your surprise ✨';
+        retry.remove();
+        document.getElementById('answerInput').focus();
+      };
+      card.appendChild(retry);
+      return;
+    }
+    showPage('page2');
+    setTimeout(() => showPage('page3'), 6000);
+  });
+
+  document.getElementById('viewBtn').addEventListener('click', () => showPage('page4'));
+  document.getElementById('yesBtn').addEventListener('click', () => {
+    showPage('page5');
+    const letter = document.getElementById('letterScroll');
+    document.getElementById('lastBtn').style.display = 'none';
+    messageReady = false;
+    // Warm up the video immediately so it is more likely to play instantly later.
+    video.load();
+    setTimeout(() => {
+      music.currentTime = 0;
+      music.play().catch(() => notify('Tap anywhere once if your browser blocks music 💗'));
+    }, 2000);
+    setTimeout(() => {
+      letter.scrollTop = 0;
+      clearInterval(autoScrollTimer);
+      // Slow, comfortable reading speed: roughly 11px per second.
+      autoScrollTimer = setInterval(() => {
+        if (!document.getElementById('page5').classList.contains('active')) {
+          clearInterval(autoScrollTimer); return;
+        }
+        const atBottom = letter.scrollTop + letter.clientHeight >= letter.scrollHeight - 3;
+        if (atBottom) {
+          clearInterval(autoScrollTimer);
+          messageReady = true;
+          document.getElementById('lastBtn').style.display = 'inline-flex';
+        } else {
+          letter.scrollTop += 1;
+        }
+      }, 55);
+    }, 1000);
+  });
+
+  document.getElementById('lastBtn').addEventListener('click', () => {
+    // Stop the background song as soon as she presses Last, before opening the video.
+    music.pause();
+    music.currentTime = 0;
+    overlay.classList.add('show');
+    // Playback may still depend on browser/device policy and whether the file is cached.
+    video.currentTime = 0;
+    video.play().catch(() => notify('Tap play on the video if it does not start automatically 💗'));
+  });
+  document.getElementById('closeVideo').addEventListener('click', () => {
+    video.pause();
+    overlay.classList.remove('show');
+  });
+  overlay.addEventListener('click', e => {
+    if (e.target === overlay) {
+      video.pause();
+      overlay.classList.remove('show');
+    }
+  });
+
+  // Prevent accidental page/body scrolling; the letter's own text area remains scrollable.
+  document.addEventListener('touchmove', e => {
+    if (!e.target.closest('#letterScroll')) e.preventDefault();
+  }, {passive:false});
+  document.addEventListener('wheel', e => {
+    if (!e.target.closest('#letterScroll')) e.preventDefault();
+  }, {passive:false});
+})();
+</script>
+</body>
+    </html>
+    
